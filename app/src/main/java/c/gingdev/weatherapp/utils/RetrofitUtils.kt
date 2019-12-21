@@ -18,7 +18,7 @@ class RetrofitUtils {
     }
 
 //    services
-    fun getWeatherService(): WeatherService {
-        return retrofit.create(WeatherService::class.java)
+    fun getWeatherService(): WeatherAPIService {
+        return retrofit.create(WeatherAPIService::class.java)
     }
 }
