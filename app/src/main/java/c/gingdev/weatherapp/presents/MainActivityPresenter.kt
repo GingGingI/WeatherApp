@@ -1,5 +1,8 @@
 package c.gingdev.weatherapp.presents
 
-class MainActivityPresenter {
+import c.gingdev.weatherapp.constructors.MainActivityConstructor
+
+class MainActivityPresenter(override val view: MainActivityConstructor.View)
+    : MainActivityConstructor.Presenter {
 
 }
