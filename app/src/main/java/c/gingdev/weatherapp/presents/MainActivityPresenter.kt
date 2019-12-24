@@ -20,9 +20,9 @@ class MainActivityPresenter(override val view: MainActivityConstructor.View)
     override fun requestWeatherData(keyword: String) {
         view.searchStarted()
         getLocations(keyword)
-        view.searchEnd()
     }
 
+    var itemCnt: Int = 0
     private fun getLocations(keyword: String) {
         weatherAPIService.locations(keyword, { _, t ->
 //            onError
@@ -32,20 +32,29 @@ class MainActivityPresenter(override val view: MainActivityConstructor.View)
             val locations: List<LocationModel>? = response.body()
 
             locations?.run {
+                itemCnt = this.size
+                var position = 0
                 forEach {
-                    getWeatherByLocation(it)
+                    position++
+                    getWeatherByLocation(it, position)
                 }
             }
         })
     }
 
-    private fun getWeatherByLocation(location: LocationModel) {
+    private fun getWeatherByLocation(location: LocationModel, position: Int) {
         weatherAPIService.weathers(location.woeid, {_, t ->
-            //            onError
+//            onError
             Log.e(TAG, "error-Weather : ${t.message}")
         }, { _, response ->
+//            onResponse
             response.body()?.run {
                 view.addData(location, this)
+
+//                All Item Added
+                if (position >= itemCnt) {
+                    view.searchEnd()
+                }
             }
         })
     }
