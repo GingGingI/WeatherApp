@@ -21,18 +21,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:paddingEnd="14dp"
+        android:paddingEnd="16dp"
+
+        android:layout_weight="1"
 
         android:background="@drawable/bg_row_border">
 
         <ImageView
             android:id="@+id/todayWeatherIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:padding="15dp"
 
             android:src="@drawable/ic_launcher_foreground"
 
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -89,14 +93,19 @@
 
         android:paddingEnd="16dp"
 
+        android:layout_weight="1"
         android:background="@drawable/bg_row_border">
 
         <ImageView
             android:id="@+id/tomorrowWeatherIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:padding="15dp"
 
             android:src="@drawable/ic_launcher_foreground"
+
+            android:scaleType="fitXY"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +149,7 @@
             android:textStyle="bold"
 
             app:layout_constraintStart_toEndOf="@id/tomorrowWeatherTemp"
-            app:layout_constraintEnd_toEndOf="@id/tomorrowWeatherState"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tomorrowWeatherState"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

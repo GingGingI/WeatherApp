@@ -50,12 +50,10 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
-        android:visibility="gone"
-
-        android:stretchColumns="2,3"/>
+        android:visibility="gone" />
 
     </ScrollView>
 
