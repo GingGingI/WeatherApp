@@ -4,5 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorBorder">#333333</color>
+    <color name="colorHeaderText">#333333</color>
+    <color name="colorTempText">#ff0000</color>
+    <color name="colorHumidityText">#000000</color>
+    <color name="colorStateText">#000000</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBorder">#aaaaaa</color>
+    <color name="colorGrayBackGround">#f0f0f0</color>
 </resources>

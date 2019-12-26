@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="localWeather">Local Weather</string>
+
+    <string name="local">Local</string>
+    <string name="Today">Today</string>
+    <string name="Tomorrow">Tomorrow</string>
 </resources>

@@ -38,8 +38,8 @@
             app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
@@ -48,14 +48,22 @@
         app:layout_constraintTop_toBottomOf="@id/titleView"
         app:layout_constraintBottom_toBottomOf="parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        android:visibility="gone" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
 
-    </ScrollView>
+                android:background="@color/colorBorder"
+                android:padding="1px"
+
+                android:visibility="gone" />
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/LoadingView"
@@ -64,9 +72,9 @@
 
         android:visibility="gone"
 
-        app:layout_constraintTop_toTopOf="@id/scrollView"
-        app:layout_constraintBottom_toBottomOf="@id/scrollView"
-        app:layout_constraintStart_toStartOf="@id/scrollView"
-        app:layout_constraintEnd_toEndOf="@id/scrollView"/>
+        app:layout_constraintTop_toTopOf="@id/refreshLayout"
+        app:layout_constraintBottom_toBottomOf="@id/refreshLayout"
+        app:layout_constraintStart_toStartOf="@id/refreshLayout"
+        app:layout_constraintEnd_toEndOf="@id/refreshLayout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

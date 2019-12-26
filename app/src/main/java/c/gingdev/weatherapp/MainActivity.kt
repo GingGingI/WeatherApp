@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TableRow
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import c.gingdev.weatherapp.constructors.MainActivityConstructor
 import c.gingdev.weatherapp.models.LocationModel
 import c.gingdev.weatherapp.models.WeatherModel
@@ -15,7 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_row_weather.view.*
 
 class MainActivity : AppCompatActivity()
-    , MainActivityConstructor.View {
+    , MainActivityConstructor.View
+    , SwipeRefreshLayout.OnRefreshListener {
 
     private val presenter: MainActivityPresenter by lazy {
         MainActivityPresenter(this)
@@ -24,21 +26,27 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        refreshLayout.setOnRefreshListener(this)
         presenter.requestWeatherData("se")
     }
 
 //    layout
-
     private var isLoading: Boolean = false
     private fun setLoadingState(state: Boolean) {
         isLoading = state
         tableLayout.visibility = if (isLoading) { View.GONE } else { View.VISIBLE }
-        LoadingView.visibility = if (isLoading) { View.VISIBLE } else { View.GONE }
+        if (!refreshLayout.isRefreshing)
+            LoadingView.visibility = if (isLoading) { View.VISIBLE } else { View.GONE }
+    }
+
+    override fun onRefresh() {
+        presenter.requestWeatherData("se")
     }
 
 //    presenter
     override fun searchStarted() {
         setLoadingState(true)
+        createHeader()
     }
 
     override fun addData(location: LocationModel, weatherModel: WeatherModel) {
@@ -46,9 +54,19 @@ class MainActivity : AppCompatActivity()
     }
 
     override fun searchEnd() {
+        refreshLayout.isRefreshing = false
         setLoadingState(false)
     }
 
+
+
+//    header
+    private fun createHeader() {
+        val row = TableRow(this)
+        val view = LayoutInflater.from(this).inflate(R.layout.layout_row_header, row, false)
+
+        tableLayout.addView(view)
+    }
 //    row
     private fun createRow(location: LocationModel, weatherModel: WeatherModel) {
         val row = TableRow(this)
