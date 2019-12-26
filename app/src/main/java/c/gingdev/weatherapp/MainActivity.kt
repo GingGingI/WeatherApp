@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity()
 //    presenter
     override fun searchStarted() {
         setLoadingState(true)
+        clearLayout()
         createHeader()
     }
 
@@ -58,7 +59,9 @@ class MainActivity : AppCompatActivity()
         setLoadingState(false)
     }
 
-
+    fun clearLayout() {
+        tableLayout.removeAllViews()
+    }
 
 //    header
     private fun createHeader() {
